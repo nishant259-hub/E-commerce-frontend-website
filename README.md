@@ -1,4 +1,4 @@
-# 🛍️ ShopEasy — Modern E-Commerce Storefront
+# 🛍️ Shopify — Modern E-Commerce Storefront
 
 A premium, interactive, and fully responsive e-commerce web application built using **Vanilla HTML5, CSS3, and JavaScript (ES6)**. This project was developed as a clean, feature-rich demonstration of modern front-end web design practices, including rich micro-animations, glassmorphism, dynamic data rendering, and a state-managed shopping cart.
 
