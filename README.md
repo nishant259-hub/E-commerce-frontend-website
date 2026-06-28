@@ -6,7 +6,7 @@ A premium, interactive, and fully responsive e-commerce web application built us
 
 ## 🚀 Live Demo & Repository
 - **GitHub Repository**: `[[Link to your GitHub Repo]](https://github.com/nishant259-hub/E-commerce-frontend-website)`
-- **Live Website**: `]`
+- **Live Website**: `https://nishant259-hub.github.io/E-commerce-frontend-website/`
 
 ---
 
