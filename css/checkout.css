@@ -1,0 +1,221 @@
+/* Layout for the checkout page */
+.checkout {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Breadcrumbs Section */
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.breadcrumbs a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.breadcrumbs a:hover {
+    color: var(--primary-color);
+}
+
+.breadcrumbs i.separator {
+    font-size: 10px;
+    color: #cbd5e1;
+}
+
+.breadcrumbs .active {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+/* Flex container for the two columns */
+.checkout-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+@media (min-width: 992px) {
+    .checkout-container {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+}
+
+/* Left side: Products List */
+.nowbuy {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.checkout-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+    background: var(--bg-white);
+    padding: 24px;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-speed) ease;
+    border: 1px solid var(--border-color);
+    width: 100%;
+}
+
+.checkout-section:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+    border-left: 4px solid var(--primary-color);
+}
+
+.checkout-section img {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    background: var(--bg-light);
+    border-radius: var(--border-radius-sm);
+    padding: 10px;
+}
+
+.proddetail {
+    flex: 1;
+}
+
+.proddetail h3 {
+    font-size: 20px;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.proddetail p {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+}
+
+.remove-btn {
+    padding: 10px 20px;
+    border: 1px solid #ef4444;
+    border-radius: var(--border-radius-sm);
+    background: white;
+    color: #ef4444;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.remove-btn:hover {
+    background-color: #ef4444;
+    color: white;
+}
+
+.remove-btn:active {
+    transform: scale(0.97);
+}
+
+/* Right side: Payment Overview */
+.overview {
+    flex: 1;
+    background: var(--bg-white);
+    padding: 30px;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    position: sticky;
+    top: 100px;
+    width: 100%;
+}
+
+.overview h2 {
+    font-size: 24px;
+    color: var(--text-dark);
+    margin-bottom: 24px;
+    font-weight: 800;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 16px;
+}
+
+.totalprice {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.totalprice h4 {
+    font-size: 16px;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.totalprice p {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 24px;
+}
+
+.totalprice button {
+    width: 100%;
+    padding: 16px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 4px 6px rgba(255, 153, 0, 0.2);
+}
+
+.totalprice button:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(255, 153, 0, 0.3);
+}
+
+.totalprice button:active {
+    transform: scale(0.98);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .checkout-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .checkout-section img {
+        width: 100%;
+        max-width: 180px;
+        height: 180px;
+    }
+    
+    .proddetail {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

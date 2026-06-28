@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>amazon - Simple Shopping Landing Page</title>
+
+    <!-- FontAwesome v6 Link for standard icons (Home, Cart, Profile, etc.) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Link to our simple CSS style file -->
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+
+    <!-- 1. NAVIGATION BAR AREA -->
+    <nav>
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+            <i class="fa-brands fa-shopify"></i> <!-- Brand Icon -->
+            <span>Shopify</span>
+        </a>
+
+        <!-- Middle Search bar -->
+        <div class="search-section">
+            <input type="text" placeholder="Search products...">
+        </div>
+
+        <!-- Navigation icons on the right -->
+        <ul>
+             <li><a href="product.html" data-tooltip="Products" class="nav-icon-btn"><i class="fa-solid fa-store"></i></a></li>
+
+            <!-- Shopping Cart Icon with dynamic counter badge -->
+            <li class="cart-wrapper">
+                <a href="checkout.html" data-tooltip="Cart" class="nav-icon-btn">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+                <span class="cart-badge" id="cart-counter">0</span>
+            </li>
+
+            <li><a href="support.html" data-tooltip="Support" class="nav-icon-btn"><i class="fa-solid fa-headset"></i></a></li>
+            <li class="profile-menu">
+              <a href="#" class="profile-toggle">
+                 <img src="https://ui-avatars.com/api/?name=Guest+User&background=random" alt="Guest">
+                 <span>Guest</span>
+              </a>
+
+              <div class="dropdown">
+                 <div class="dropdown-header">
+                   <p class="name">Guest User</p>
+                   <p class="email">guest@example.com</p>
+                 </div>
+                 <a href="#"><i class="fa-regular fa-user"></i> My Profile</a>
+                 <a href="#"><i class="fa-solid fa-box-open"></i> My Orders</a>
+                 <a href="#"><i class="fa-regular fa-heart"></i> Wishlist</a>
+                 <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
+                 <a href="#" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out</a>
+              </div>
+            </li>
+           
+        </ul>
+    </nav>
+
+
+    <!-- 2. HERO / BANNER SECTION -->
+    <section class="hero-sec">
+        <!-- Left Side: Slogan, Title and CTA Button -->
+        <div class="hero">
+            <p id="hline">Best Quality, Best Price</p>
+            <h1>Find Your Perfect <br><span>Product</span></h1>
+            <p>Discover amazing premium products at the best prices. Experience fast shipping, great customer support,
+                and easy shopping.</p>
+            <button onclick="scrollToProducts()">Shop Now</button>
+        </div>
+
+        <!-- Right Side: Hero Banner Image -->
+        <div class="hero-img">
+            <img src="images/product-img.jpg" alt="Featured Product Banner">
+        </div>
+    </section>
+
+
+    <!-- 3. SHOP BY CATEGORY SECTION -->
+    <section class="category-section">
+        <h2 id="shopbyheading">Shop by Category</h2>
+
+        <div class="catogery">
+            <!-- Category Item 1 -->
+            <div class="item">
+                <a href="product.html?category=mobile">
+                    <img src="images/mobile.jpg" alt="Smart Phone">
+                    <p>Smart Phones</p>
+                </a>
+            </div>
+
+            <!-- Category Item 2 -->
+            <div class="item">
+                <a href="product.html?category=smartwatch">
+                    <img src="images/smartwatch.webp" alt="Smart Watch">
+                    <p>Smart Watches</p>
+                </a>
+            </div>
+
+            <!-- Category Item 3 -->
+            <div class="item">
+                <a href="product.html?category=headphone">
+                    <img src="images/headphone.webp" alt="Headphone">
+                    <p>Headphones</p>
+                </a>
+            </div>
+
+            <!-- Category Item 4 -->
+            <div class="item">
+                <a href="product.html?category=laptop">
+                    <img src="images/laptop.webp" alt="Laptop">
+                    <p>Laptops</p>
+                </a>
+            </div>
+            <!-- Category Item 5 -->
+            <div class="item">
+                <a href="product.html?category=footwear">
+                    <img src="images/trshoes.png" alt="Shoes">
+                    <p>FootWear</p>
+                </a>
+            </div>
+            <!-- Category Item 6 -->
+            <div class="item">
+                <a href="product.html?category=men">
+                    <img src="images/shirt.webp" alt="Shirts">
+                    <p>Men clothes</p>
+                </a>
+            </div>
+            <!-- Category Item 7 -->
+            <div class="item">
+                <a href="product.html?category=child">
+                    <img src="images/child.webp" alt="child">
+                    <p>Child Clothes</p>
+                </a>
+            </div>
+            <div class="item">
+                <a href="product.html?category=women">
+                    <img src="images/womencloth.webp" alt="women">
+                    <p>Women Clothes</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 4. FEATURED PRODUCTS SECTION -->
+    <section class="products-section" id="products-explore">
+        <h2>Featured Products</h2>
+
+        <div class="products">
+            <!-- Product Card 1: Laptop -->
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="images/laptop.webp" alt="Laptop">
+                </div>
+                <div class="card-meta">
+                    <span class="card-category">Computers</span>
+                    <div class="card-rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                </div>
+                <h3>High Performance Laptop</h3>
+                <div class="card-price-row">
+                    <p>₹50,000</p>
+                    <!-- Trigger function on click passing product name -->
+                    <button onclick="addToCart('High Performance Laptop')">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product Card 2: Headphone -->
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="images/headphone.webp" alt="Headphone">
+                </div>
+                <div class="card-meta">
+                    <span class="card-category">Audio</span>
+                    <div class="card-rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                </div>
+                <h3>Wireless Headphones</h3>
+                <div class="card-price-row">
+                    <p>₹2,000</p>
+                    <button onclick="addToCart('Wireless Headphones')">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product Card 3: Smart Watch -->
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="images/smartwatch.webp" alt="Smart Watch">
+                </div>
+                <div class="card-meta">
+                    <span class="card-category">Wearables</span>
+                    <div class="card-rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                </div>
+                <h3>Smart Fitness Watch</h3>
+                <div class="card-price-row">
+                    <p>₹5,000</p>
+                    <button onclick="addToCart('Smart Fitness Watch')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Toast Container: Alerts display area -->
+    <div id="toast-container"></div>
+
+
+    <!-- 5. FOOTER AREA -->
+    <footer>
+        <div class="footer-grid">
+            <!-- Col 1: About -->
+            <div class="footer-column">
+                <h4>ShopEasy</h4>
+                <p>Simple and clean demo e-commerce landing page designed for college web development projects.</p>
+            </div>
+
+            <!-- Col 2: Useful Links -->
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Categories -->
+            <div class="footer-column">
+                <h4>Top Categories</h4>
+                <ul>
+                    <li><a href="product.html?category=mobile">Smart Phones</a></li>
+                    <li><a href="product.html?category=smartwatch">Smart Watches</a></li>
+                    <li><a href="product.html?category=headphone">Headphones</a></li>
+                    <li><a href="product.html?category=laptop">Laptops</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer Copyright Row -->
+        <div class="footer-bottom">
+            <p>© 2026 ShopEasy. All Rights Reserved.</p>
+            <p>Designed simply for study purposes.</p>
+        </div>
+    </footer>
+
+
+    <!-- 6. SIMPLE INTERACTIVE JAVASCRIPT CODE -->
+     <script src="js/count.js"></script>
+    <script>
+        // 1. Cart Count Read Karna:
+        // localStorage check karenge taaki page refresh ya navigate hone par cart count reset na ho.
+        // Agar pehle se koi value save nahi hai, to default count 0 rahega.
+        let cartCount = parseInt(localStorage.getItem('cartCount')) || 0;
+
+        // Page load hotey hi navbar badge ko initial count se update karenge.
+        document.getElementById('cart-counter').innerText = cartCount;
+
+        // Function to handle "Add to Cart" clicks
+        function addToCart(productName) {
+            // Increment count variable
+            cartCount = cartCount + 1;
+
+            // Naye count ko localStorage me save kar denge.
+            localStorage.setItem('cartCount', cartCount);
+
+            // Get the cart counter element by ID
+            let badge = document.getElementById('cart-counter');
+
+            // Update the text inside the badge to the new count
+            badge.innerText = cartCount;
+
+            // Show a simple toast alert message
+            showNotification(productName + " added to cart!");
+        }
+
+        // Function to create a small popup notification on screen (Toast Notification)
+        function showNotification(message) {
+            let container = document.getElementById('toast-container');
+
+            // Create a new div element
+            let toast = document.createElement('div');
+            toast.className = 'toast'; // apply toast styling rules
+            toast.innerHTML = '<i class="fa-solid fa-circle-check"></i> ' + message;
+
+            // Add this new div inside the container
+            container.appendChild(toast);
+
+            // Remove the notification automatically after 3 seconds (3000ms)
+            setTimeout(function () {
+                toast.remove();
+            }, 3000);
+        }
+
+        // Function to scroll down to products section smoothly
+        function scrollToProducts() {
+            let productsSec = document.getElementById('products-explore');
+            productsSec.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Search bar Enter Key Listener
+        const indexSearchInput = document.querySelector(".search-section input");
+        if (indexSearchInput) {
+            indexSearchInput.addEventListener("keydown", function (e) {
+                if (e.key === "Enter") {
+                    const query = indexSearchInput.value.trim();
+                    if (query) {
+                        window.location.href = "product.html?search=" + encodeURIComponent(query);
+                    }
+                }
+            });
+        }
+    </script>
+    
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>amazon - Product Details</title>
+
+    <!-- FontAwesome v6 Link for standard icons (Home, Cart, Profile, etc.) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Link to our CSS style files -->
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/productdetail.css">
+</head>
+
+<body>
+
+    <!-- 1. NAVIGATION BAR AREA -->
+    <nav>
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+            <i class="fa-brands fa-shopify"></i> <!-- Brand Icon -->
+            <span>Shopify</span>
+        </a>
+
+        <!-- Middle Search bar -->
+        <div class="search-section">
+            <input type="text" placeholder="Search products...">
+        </div>
+
+        <!-- Navigation icons on the right -->
+        <ul>
+             <li><a href="product.html" data-tooltip="Products" class="nav-icon-btn"><i class="fa-solid fa-store"></i></a></li>
+
+            <!-- Shopping Cart Icon with dynamic counter badge -->
+            <li class="cart-wrapper">
+                <a href="checkout.html" data-tooltip="Cart" class="nav-icon-btn">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+                <span class="cart-badge" id="cart-counter">0</span>
+            </li>
+
+            <li><a href="support.html" data-tooltip="Support" class="nav-icon-btn"><i class="fa-solid fa-headset"></i></a></li>
+            <li class="profile-menu">
+              <a href="#" class="profile-toggle">
+                 <img src="https://ui-avatars.com/api/?name=Guest+User&background=random" alt="Guest">
+                 <span>Guest</span>
+              </a>
+
+              <div class="dropdown">
+                 <div class="dropdown-header">
+                   <p class="name">Guest User</p>
+                   <p class="email">guest@example.com</p>
+                 </div>
+                 <a href="#"><i class="fa-regular fa-user"></i> My Profile</a>
+                 <a href="#"><i class="fa-solid fa-box-open"></i> My Orders</a>
+                 <a href="#"><i class="fa-regular fa-heart"></i> Wishlist</a>
+                 <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
+                 <a href="#" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out</a>
+              </div>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- 2. MAIN DETAIL BLOCK -->
+    <div class="detail-page-container">
+        <!-- Breadcrumbs -->
+        <div class="breadcrumbs">
+            <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <i class="fa-solid fa-chevron-right separator"></i>
+            <a href="product.html" id="breadcrumb-category-link"><span id="breadcrumb-category">Category</span></a>
+            <i class="fa-solid fa-chevron-right separator"></i>
+            <span class="active" id="breadcrumb-product">Product Name</span>
+        </div>
+
+        <!-- Main Product Detail -->
+        <section class="detail-section">
+            <div class="detail" id="detailpage">
+                <div class="loading-spinner">
+                    <i class="fa-solid fa-spinner fa-spin"></i> Loading product details...
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Products Section -->
+        <section class="related-section">
+            <h2 class="section-title">Similar Products You Might Like</h2>
+            <div class="products-grid" id="related-products-container">
+                <!-- Loaded dynamically -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Toast Container for Notifications -->
+    <div id="toast-container"></div>
+
+    <!-- 5. FOOTER AREA -->
+    <footer>
+        <div class="footer-grid">
+            <!-- Col 1: About -->
+            <div class="footer-column">
+                <h4>ShopEasy</h4>
+                <p>Simple and clean demo e-commerce landing page designed for college web development projects.</p>
+            </div>
+
+            <!-- Col 2: Useful Links -->
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Categories -->
+            <div class="footer-column">
+                <h4>Top Categories</h4>
+                <ul>
+                    <li><a href="product.html?category=mobile">Smart Phones</a></li>
+                    <li><a href="product.html?category=watch">Smart Watches</a></li>
+                    <li><a href="product.html?category=headphone">Headphones</a></li>
+                    <li><a href="product.html?category=laptop">Laptops</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer Copyright Row -->
+        <div class="footer-bottom">
+            <p>© 2026 ShopEasy. All Rights Reserved.</p>
+            <p>Designed simply for study purposes.</p>
+        </div>
+    </footer>
+    <script src="js/count.js"></script>
+    <script src="js/product.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/prodown.js"></script>
+    
+</body>
+
+</html>

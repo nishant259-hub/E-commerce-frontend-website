@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - ShopEasy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <style>
+        .support-container {
+            padding: 80px 8%;
+            min-height: 60vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--bg-light);
+        }
+        .support-card {
+            background: var(--bg-white);
+            padding: 40px;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-lg);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        .support-card h2 {
+            font-size: 32px;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+        .support-card p {
+            color: var(--text-normal);
+            margin-bottom: 30px;
+        }
+        .contact-methods {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+        .method {
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-lg);
+            width: 45%;
+            transition: all var(--transition-speed);
+        }
+        .method:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        .method i {
+            font-size: 30px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        .method h4 {
+            font-size: 18px;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 1. NAVIGATION BAR AREA -->
+    <nav>
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+            <i class="fa-brands fa-shopify"></i> <!-- Brand Icon -->
+            <span>Shopify</span>
+        </a>
+
+        <!-- Middle Search bar -->
+        <div class="search-section">
+            <input type="text" placeholder="Search products...">
+        </div>
+
+        <!-- Navigation icons on the right -->
+        <ul>
+             <li><a href="product.html" data-tooltip="Products" class="nav-icon-btn"><i class="fa-solid fa-store"></i></a></li>
+
+            <!-- Shopping Cart Icon with dynamic counter badge -->
+            <li class="cart-wrapper">
+                <a href="checkout.html" data-tooltip="Cart" class="nav-icon-btn">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+                <span class="cart-badge" id="cart-counter">0</span>
+            </li>
+
+            <li><a href="support.html" data-tooltip="Support" class="nav-icon-btn"><i class="fa-solid fa-headset"></i></a></li>
+            <li class="profile-menu">
+              <a href="#" class="profile-toggle">
+                 <img src="https://ui-avatars.com/api/?name=Guest+User&background=random" alt="Guest">
+                 <span>Guest</span>
+              </a>
+
+              <div class="dropdown">
+                 <div class="dropdown-header">
+                   <p class="name">Guest User</p>
+                   <p class="email">guest@example.com</p>
+                 </div>
+                 <a href="#"><i class="fa-regular fa-user"></i> My Profile</a>
+                 <a href="#"><i class="fa-solid fa-box-open"></i> My Orders</a>
+                 <a href="#"><i class="fa-regular fa-heart"></i> Wishlist</a>
+                 <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
+                 <a href="#" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out</a>
+              </div>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="support-container">
+        <div class="support-card">
+            <h2>How can we help you?</h2>
+            <p>Our support team is always here to help you out. Choose a method below to contact us.</p>
+            
+            <div class="contact-methods">
+                <div class="method">
+                    <i class="fa-solid fa-envelope"></i>
+                    <h4>Email Us</h4>
+                    <p>nishant.kumar259390@gmail.com</p>
+                </div>
+                <div class="method">
+                    <i class="fa-solid fa-phone"></i>
+                    <h4>Call Us</h4>
+                    <p>+91 9431010061</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. FOOTER AREA -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h4>ShopEasy</h4>
+                <p>Simple and clean demo e-commerce landing page designed for college web development projects.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="support.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Top Categories</h4>
+                <ul>
+                    <li><a href="product.html?category=mobile">Smart Phones</a></li>
+                    <li><a href="product.html?category=smartwatch">Smart Watches</a></li>
+                    <li><a href="product.html?category=headphone">Headphones</a></li>
+                    <li><a href="product.html?category=laptop">Laptops</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 ShopEasy. All Rights Reserved.</p>
+            <p>Designed simply for study purposes.</p>
+        </div>
+    </footer>
+
+    <script>
+        let cartCount = parseInt(localStorage.getItem('cartCount')) || 0;
+        document.getElementById('cart-counter').innerText = cartCount;
+    </script>
+</body>
+</html>

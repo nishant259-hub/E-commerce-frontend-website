@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>amazon - Simple Shopping Landing Page</title>
+
+    <!-- FontAwesome v6 Link for standard icons (Home, Cart, Profile, etc.) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Link to our simple CSS style file -->
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/product.css">
+</head>
+
+<body>
+
+    <!-- 1. NAVIGATION BAR AREA -->
+    <nav>
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+            <i class="fa-brands fa-shopify"></i> <!-- Brand Icon -->
+            <span>Shopify</span>
+        </a>
+
+        <!-- Middle Search bar -->
+        <div class="search-section">
+            <input type="text" placeholder="Search products...">
+        </div>
+
+        <!-- Navigation icons on the right -->
+        <ul>
+             <li><a href="product.html" data-tooltip="Products" class="nav-icon-btn"><i class="fa-solid fa-store"></i></a></li>
+
+            <!-- Shopping Cart Icon with dynamic counter badge -->
+            <li class="cart-wrapper">
+                <a href="checkout.html" data-tooltip="Cart" class="nav-icon-btn" id="cartcount">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+                <span class="cart-badge" id="cart-counter">0</span>
+            </li>
+
+            <li><a href="support.html" data-tooltip="Support" class="nav-icon-btn"><i class="fa-solid fa-headset"></i></a></li>
+            <li class="profile-menu">
+              <a href="#" class="profile-toggle">
+                 <img src="https://ui-avatars.com/api/?name=Guest+User&background=random" alt="Guest">
+                 <span>Guest</span>
+              </a>
+
+              <div class="dropdown">
+                 <div class="dropdown-header">
+                   <p class="name">Guest User</p>
+                   <p class="email">guest@example.com</p>
+                 </div>
+                 <a href="#"><i class="fa-regular fa-user"></i> My Profile</a>
+                 <a href="#"><i class="fa-solid fa-box-open"></i> My Orders</a>
+                 <a href="#"><i class="fa-regular fa-heart"></i> Wishlist</a>
+                 <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
+                 <a href="#" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out</a>
+              </div>
+            </li>
+        </ul>
+    </nav>
+   <section class="product-page-layout">
+    <div class="list-item">
+        <h3 class="heading">Category</h3>
+        <div class="list-wrapper-scroll">
+            <div class="list">
+               <a href="product.html" id="alllink">🛍️All Product</a>
+            </div>
+            <div class="list">
+               <a href="product.html?category=mobile">
+                 <span>📱Mobile</span>
+                </a>
+            </div>
+            <div class="list">
+                <a href="product.html?category=watch">⌚Watch</a>
+            </div>
+            <div class="list">
+                 <a href="product.html?category=headphone">🎧Headphone</a>
+            </div>
+            <div class="list">
+                <a href="product.html?category=laptop">💻Laptop</a>
+            </div>
+            <div class="list">
+                <a href="product.html?category=footwear">👟Footwear</a>
+            </div>
+            <div class="list">
+                <a href="product.html?category=men-cloth">👔Men-Cloth</a>
+            </div>
+            <div class="list">
+                <a href="product.html?category=child-cloth">👕Child-Cloth</a>
+            </div>
+            <div class="list">
+                <a href="product.html?category=women-cloth">👗Women-Cloth</a>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="products-container">
+
+    </div>
+   </section>
+   
+    <!-- 5. FOOTER AREA -->
+    <footer>
+        <div class="footer-grid">
+            <!-- Col 1: About -->
+            <div class="footer-column">
+                <h4>ShopEasy</h4>
+                <p>Simple and clean demo e-commerce landing page designed for college web development projects.</p>
+            </div>
+
+            <!-- Col 2: Useful Links -->
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Categories -->
+            <div class="footer-column">
+                <h4>Top Categories</h4>
+                <ul>
+                    <li><a href="#">Smart Phones</a></li>
+                    <li><a href="#">Smart Watches</a></li>
+                    <li><a href="#">Headphones</a></li>
+                    <li><a href="#">Laptops</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer Copyright Row -->
+        <div class="footer-bottom">
+            <p>© 2026 ShopEasy. All Rights Reserved.</p>
+            <p>Designed simply for study purposes.</p>
+        </div>
+    </footer>
+
+    <!-- Toast Container: Alerts display area (dynamic notifications yahan load honge) -->
+    <div id="toast-container"></div>
+
+
+    <!-- 6. SIMPLE INTERACTIVE JAVASCRIPT CODE -->
+    <script>
+        // 1. Cart Count Read Karna:
+        // localStorage check karenge taaki page refresh ya navigate hone par cart count reset na ho.
+        // Agar pehle se koi value save nahi hai, to default count 0 rahega.
+        let cartCount = parseInt(localStorage.getItem('cartCount')) || 0;
+
+        // Page load hotey hi navbar badge ko initial count se update karenge.
+        document.getElementById('cart-counter').innerText = cartCount;
+
+        // Function to handle "Add to Cart" clicks
+        function addToCart(productName) {
+            // Increment count variable
+            cartCount = cartCount + 1;
+
+            // Naye count ko localStorage me save kar denge.
+            localStorage.setItem('cartCount', cartCount);
+
+            // Get the cart counter element by ID
+            let badge = document.getElementById('cart-counter');
+
+            // Update the text inside the badge to the new count
+            badge.innerText = cartCount;
+
+            // Show a simple toast alert message
+            showNotification(productName + " added to cart!");
+        }
+
+        // Function to create a small popup notification on screen (Toast Notification)
+        function showNotification(message) {
+            let container = document.getElementById('toast-container');
+
+            // Create a new div element
+            let toast = document.createElement('div');
+            toast.className = 'toast'; // apply toast styling rules
+            toast.innerHTML = '<i class="fa-solid fa-circle-check"></i> ' + message;
+
+            // Add this new div inside the container
+            container.appendChild(toast);
+
+            // Remove the notification automatically after 3 seconds (3000ms)
+            setTimeout(function () {
+                toast.remove();
+            }, 3000);
+        }
+
+        // Function to scroll down to products section smoothly
+        function scrollToProducts() {
+            let productsSec = document.getElementById('products-explore');
+            productsSec.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+
+
+       <script src="js/count.js"></script>
+       <script src="js/product.js"></script>
+       <script src="js/app.js"></script>
+  
+    </body>
+    </html>

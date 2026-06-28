@@ -1,0 +1,180 @@
+/* ==========================================================================
+   PRODUCT LIST PAGE SPECIFIC STYLES (product.css)
+   ========================================================================== */
+
+/* Tag selector 'section' ke badle hum specific class use kar rahe hain 
+   taaki index.html ke general sections me dynamic style collision/leak na ho. */
+.product-page-layout {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    padding: 0; /* navbar aur footer matches alignment */
+}
+
+/* Sidebar Categories Panel styling */
+.list-item {
+    background-color: var(--bg-light); /* Clean neutral theme color */
+    width: 240px; /* Thoda wide area readability ke liye */
+    flex-shrink: 0; /* Flexbox space squeeze na hone de */
+    position: sticky;
+    top: 80px; /* Navbar block offset height calculation */
+    height: calc(100vh - 80px);
+    overflow-y: auto; /* Agar items scroll se bade honge to scroll display ho */
+    border-right: 1px solid var(--border-color); /* Separator line from products grid */
+    padding: 20px 15px;
+}
+
+/* Category Sidebar Heading text */
+.heading {
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    padding-left: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Sidebar item container */
+.list {
+    margin-bottom: 8px;
+}
+
+/* Category link cards */
+.list a {
+    box-sizing: border-box;
+    height: 46px;
+    width: 100%; /* sidebar ki complete width occupy karega automatically */
+    text-decoration: none;
+    display: flex;
+    align-items: center; /* Vertically center icon aur text */
+    padding: 0 16px;
+    background-color: var(--bg-white);
+    border-radius: var(--border-radius-sm);
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-normal);
+    border: 1px solid var(--border-color);
+    transition: all var(--transition-speed) ease;
+}
+
+/* Emoji / Icon spacing inside category link */
+.list a span,
+.list a {
+    gap: 10px;
+}
+
+/* Hover state category link standard contrast readability color change */
+.list a:hover {
+    background-color: var(--border-color);
+    color: var(--text-dark);
+    transform: translateX(4px); /* subtle right slide shift on hover */
+}
+
+/* Active Category indicator highlight style */
+.list a.active {
+    background: var(--primary-color);
+    color: var(--bg-white);
+    font-weight: 700;
+    border-color: var(--primary-color);
+    border-left: 6px solid var(--dark-bg); /* indicator accent tag */
+    box-shadow: 0 4px 10px rgba(255, 153, 0, 0.15);
+}
+
+.list a.active:hover {
+    transform: none; /* Active class elements slide reset */
+    color: var(--bg-white);
+}
+
+/* Products grid container */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-left: 3%;
+    padding: 30px 20px 30px 0; /* Padding offsets */
+    flex: 1; /* Pure horizontal space distribution */
+}
+.card a{
+   text-decoration: none;
+}
+/* Extra utility for full page height consistency */
+.allproduct {
+    height: calc(100vh - 100px);
+}
+
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (Sidebar conversion into Horizontal chip list)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* Flex container becomes column on mobile */
+    .product-page-layout {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    /* Sidebar transforms to a horizontal category bar */
+    .list-item {
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 0;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding: 15px 4%;
+        overflow-y: visible;
+        z-index: 10;
+    }
+
+    .heading {
+        font-size: 16px;
+        margin-bottom: 10px;
+        padding-left: 0;
+    }
+
+    /* category lists horizontal flow layout */
+    .list-item .list-wrapper-scroll {
+        display: flex;
+        overflow-x: auto; /* horizontally scrollable chip tabs */
+        gap: 10px;
+        padding-bottom: 5px;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch; /* smooth finger scrolling on mobile devices */
+    }
+    
+    /* Hide scrollbars visually */
+    .list-item .list-wrapper-scroll::-webkit-scrollbar {
+        display: none;
+    }
+
+    .list {
+        margin-bottom: 0;
+        flex-shrink: 0; /* chip elements squeeze shrink lock reset */
+    }
+
+    .list a {
+        width: auto;
+        white-space: nowrap; /* text automatic newline wrap off */
+        padding: 0 16px;
+        height: 38px;
+        font-size: 13px;
+    }
+
+    .list a:hover {
+        transform: none; /* disable horizontal translation slide animation on mobile */
+    }
+    
+    .list a.active {
+        border-left: 1px solid var(--primary-color); /* horizontal tab indicator style resetting default left border indicator */
+        border-bottom: 4px solid var(--dark-bg);
+    }
+
+    /* Container pads alignment on responsive grids */
+    .container {
+        padding: 20px 4%;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,779 @@
+/* 1. CSS Variables (Custom Properties) - Isse colors aur constants ek jagah define hote hain taaki code clean aur customizable rahe */
+:root {
+    --primary-color: #ff9900;       /* Amazon standard orange theme color */
+    --primary-hover: #e68a00;       /* Darker orange hover state ke liye */
+    --dark-bg: #232f3e;           /* Amazon dark blue background (footer style) */
+    --bg-white: #ffffff;            /* Pure white background elements ke liye */
+    --bg-light: #f8fafc;            /* Modern light gray-blue background */
+    --text-dark: #0f172a;           /* Headings aur main text ke liye solid dark color */
+    --text-normal: #334155;         /* Body copy aur general text readability ke liye */
+    --text-muted: #64748b;          /* Subtitles, labels aur secondary description ke liye */
+    --border-color: #e2e8f0;        /* Borders ke liye light slate gray */
+    --border-radius-sm: 4px;        /* Chote elements like buttons, inputs ke rounded corners */
+    --border-radius-lg: 12px;       /* Cards aur main sections ke rounded corners */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);   /* Buttons aur search bar ki default light shadow */
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); /* Default card shadow */
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.08); /* Hover effects aur active state shadow */
+    --transition-speed: 0.3s;       /* Smooth transition speed globally hover effects ke liye */
+}
+
+/* 2. Global Resets: Sab margins, paddings aur borders ko baseline par lane ke liye */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* padding aur border width element ke total size me automatic adjust ho jaye */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /* system-ui font stack load hone me fast hai aur mobile aur desktop dono pe clean dikhta hai */
+}
+
+/* Page body standard styles */
+body {
+    background-color: var(--bg-white);
+    color: var(--text-normal);
+    line-height: 1.6; /* Lines ke beech proper gap taaki reading aasan ho */
+}
+
+/* 3. Navigation Bar: Top Header design */
+nav {
+    display: flex;
+    justify-content: space-between; /* links left, middle search, aur right icons ko door rakhne ke liye */
+    align-items: center; /* vertical vertical height alignment standard center me rakhne ke liye */
+    padding: 15px 8%;
+    background-color: var(--bg-white);
+    border-bottom: 1px solid var(--border-color); /* Light and clean bottom boundary line */
+    position: sticky; /* scroll bar scroll hone par navbar top pe block rahega */
+    top: 0;
+    z-index: 1000; /* Baki screen content ke upar navbar dikhane ke liye stack order list */
+    box-shadow: var(--shadow-sm);
+}
+
+/* Brand Logo Styling */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* brand icon aur text logo ke beech space */
+    font-size: 24px;
+    font-weight: 800; /* Extra bold text format */
+    color: var(--text-dark);
+    text-decoration: none; /* hyperlink default underline style remove */
+}
+
+/* Brand icon inside logo */
+.logo i {
+    color: var(--primary-color);
+}
+
+/* Search bar wrapper configuration */
+.search-section {
+    flex: 1; /* available horizontal space expand karega navbar me */
+    max-width: 500px;
+    margin: 0 30px;
+}
+
+/* Search Input Styling */
+.search-section input {
+    width: 100%;
+    padding: 10px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-lg); /* Beautiful fully-rounded corner input field */
+    font-size: 14px;
+    outline: none; /* Focus input frame outline hatane ke liye */
+    transition: all var(--transition-speed) ease;
+    box-shadow: var(--shadow-sm);
+}
+
+/* active/focus states search field style */
+.search-section input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.15); /* Modern orange glow/focus ring effect */
+}
+
+/* Navbar utilities links / profile icon list */
+nav ul {
+    display: flex;
+    list-style: none; /* Bullet points dots remove karega */
+    gap: 16px;
+    align-items: center;
+}
+
+/* Base style for nav links */
+nav ul li > a:not(.nav-icon-btn):not(.profile-toggle) {
+    color: var(--text-normal);
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--transition-speed) ease;
+}
+
+nav ul li > a:not(.nav-icon-btn):not(.profile-toggle):hover {
+    color: var(--primary-color);
+}
+
+/* Circular Icon Buttons */
+.nav-icon-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    color: var(--text-normal);
+    font-size: 18px;
+    text-decoration: none;
+    background-color: transparent;
+    transition: all var(--transition-speed) ease;
+    border: 1px solid transparent;
+    position: relative; /* Tooltip positioning basis */
+}
+
+.nav-icon-btn:hover {
+    background-color: var(--bg-light);
+    color: var(--primary-color);
+    border-color: var(--border-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Custom Tooltip on Hover */
+.nav-icon-btn::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background-color: var(--text-dark);
+    color: var(--bg-white);
+    padding: 6px 12px;
+    border-radius: var(--border-radius-sm);
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    z-index: 1001;
+    box-shadow: var(--shadow-md);
+}
+
+/* Tooltip Triangle Arrow */
+.nav-icon-btn::before {
+    content: '';
+    position: absolute;
+    bottom: -11px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent transparent var(--text-dark) transparent;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    z-index: 1001;
+}
+
+.nav-icon-btn:hover::after,
+.nav-icon-btn:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Cart Counter Badge placement dynamic count badge */
+.cart-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background-color: var(--primary-color);
+    color: var(--bg-white);
+    font-size: 10px;
+    font-weight: bold;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%; /* pure round circle structure card badge */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    border: 2px solid var(--bg-white); /* White border so it pops out of the icon button */
+    pointer-events: none; /* Don't block clicks on the icon */
+}
+
+
+/* 4. Hero Banner Section */
+.hero-sec {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 80px 8%;
+    background-color: var(--bg-light); /* Sleek light light-blue banner area */
+    gap: 40px;
+}
+
+/* Left layout containing promotional copy */
+.hero {
+    max-width: 550px;
+}
+
+#hline {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase; /* pure capital characters transformation */
+    letter-spacing: 1.5px; /* letters spaces clear and premium gap */
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: 46px;
+    color: var(--text-dark);
+    line-height: 1.2;
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+
+/* Accent highlight header span color orange */
+.hero h1 span {
+    color: var(--primary-color);
+}
+
+.hero p {
+    font-size: 16px;
+    color: var(--text-normal);
+    margin-bottom: 30px;
+}
+
+/* Main Shop Button style details */
+.hero button {
+    padding: 14px 32px;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: var(--bg-white);
+    box-shadow: 0 4px 6px rgba(255, 153, 0, 0.2);
+    transition: all var(--transition-speed) ease;
+}
+
+.hero button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px); /* hover animations slightly upwards shift */
+    box-shadow: 0 6px 12px rgba(255, 153, 0, 0.3); /* shadow deep on hover button layout structure */
+}
+
+.hero button:active {
+    transform: translateY(0); /* button click hone par standard height adjust */
+}
+
+/* Hero image box right container styling */
+.hero-img {
+    width: 450px;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* image sizing, transparent background adjusts */
+.hero-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* puri design scale check images aspect ratio maintains */
+}
+
+
+/* 5. Shop by Category Row Section layout definitions */
+.category-section {
+    padding: 80px 8%;
+    background-color: var(--bg-white);
+}
+
+#shopbyheading {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 48px;
+}
+
+.catogery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* isse category cards mobile list size check automatically fit ho jaenge wrap rules */
+    gap: 24px;
+}
+
+/* Category cards list layouts */
+.item {
+    width: 200px;
+    background-color: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    transition: all var(--transition-speed) ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.item a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    padding: 24px 16px;
+}
+
+.item img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    margin-bottom: 16px;
+    transition: transform var(--transition-speed) cubic-bezier(0.34, 1.56, 0.64, 1);
+    /* cubic-bezier transition gives slight bounce effect on hover */
+}
+
+.item p {
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--text-normal);
+    text-align: center;
+    transition: color var(--transition-speed) ease;
+}
+
+/* Interactive hover cards */
+.item:hover {
+    transform: translateY(-6px);
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-lg);
+}
+
+.item:hover img {
+    transform: scale(1.15); /* dynamic zoom categories product image container logo styles */
+}
+
+.item:hover p {
+    color: var(--primary-color);
+}
+
+
+/* 6. Featured Products Section styling logic */
+.products-section {
+    padding: 80px 8%;
+    background-color: var(--bg-light); /* Section standard layout block */
+}
+
+.products-section h2 {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 48px;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+/* Product Card design */
+.card {
+    text-decoration: none;
+    background-color: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-lg);
+    padding: 24px;
+    width: 310px;
+    display: flex;
+    flex-direction: column;
+    transition: all var(--transition-speed) ease;
+    box-shadow: var(--shadow-md);
+}
+
+.card-img-container {
+    width: 100%;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.card img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform var(--transition-speed) ease;
+}
+
+.card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.card-category {
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.card-rating {
+    color: #ffc107; /* Orange-yellow classic star colors */
+    font-size: 12px;
+}
+
+.card h3 {
+    font-size: 18px;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+    font-weight: 700;
+    height: 52px; /* card dynamic heights layout align lines height fix values */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 2 lines display configuration only */
+    -webkit-box-orient: vertical;
+}
+
+.card-price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto; /* elements bottom layout pushes container auto-adjusted margins */
+}
+
+.card p {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text-dark);
+}
+
+/* Card CTA Action buttons */
+.card button {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--bg-white);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(255, 153, 0, 0.1);
+    transition: all var(--transition-speed) ease;
+}
+
+.card button:hover {
+    background-color: var(--primary-hover);
+    box-shadow: 0 4px 8px rgba(255, 153, 0, 0.2);
+}
+
+.card button:active {
+    transform: scale(0.97); /* click effect scale adjustment animations */
+}
+
+/* Hover over product cards */
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card:hover img {
+    transform: scale(1.05); /* Slight zoom in on image */
+}
+
+
+/* 7. Toast Alerts System */
+#toast-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+}
+
+.toast {
+    background-color: var(--text-dark);
+    color: var(--bg-white);
+    padding: 14px 24px;
+    border-radius: var(--border-radius-sm);
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: slideIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); /* Custom entrance animation list */
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(100px) scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.toast i {
+    color: var(--primary-color);
+}
+
+
+/* 8. Footer Design configuration values */
+footer {
+    background-color: var(--dark-bg);
+    color: var(--border-color);
+    padding: 60px 8% 30px;
+}
+
+.footer-grid {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-column {
+    flex: 1 1 220px;
+}
+
+.footer-column h4 {
+    color: var(--bg-white);
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-column p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 12px;
+}
+
+.footer-column ul li a {
+    color: #cbd5e1; /* soft grey colors for footer items links lists */
+    text-decoration: none;
+    font-size: 14px;
+    transition: color var(--transition-speed) ease;
+}
+
+.footer-column ul li a:hover {
+    color: var(--primary-color);
+}
+
+.footer-bottom {
+    border-top: 1px solid #485769; /* light break line borders in footer */
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: #94a3b8;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+
+/* =========================================
+   10. Profile Dropdown Menu Styling
+========================================= */
+.profile-menu {
+    position: relative;
+    cursor: pointer;
+}
+
+.profile-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 30px;
+    transition: background-color var(--transition-speed) ease;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid transparent;
+}
+
+.profile-toggle:hover {
+    background-color: var(--bg-light);
+    border-color: var(--border-color);
+}
+
+.profile-toggle img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.profile-toggle span {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text-dark);
+}
+
+/* Dropdown Container */
+.dropdown {
+    position: absolute;
+    top: calc(100% + 15px);
+    right: 0;
+    width: 240px;
+    background-color: var(--bg-white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 1000;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* For border radius */
+}
+
+/* Show Dropdown on Hover */
+.profile-menu:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Invisible bridge so hover doesn't break when moving cursor to dropdown */
+.profile-menu::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 20px;
+}
+
+/* Dropdown Header */
+.dropdown-header {
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-light);
+    text-align: center;
+}
+
+.dropdown-header p.name {
+    margin: 0;
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--text-dark);
+}
+
+.dropdown-header p.email {
+    margin: 5px 0 0 0;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* Dropdown Items */
+.dropdown a {
+    padding: 14px 20px;
+    color: var(--text-normal);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all var(--transition-speed) ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Add icons style */
+.dropdown a i {
+    font-size: 16px;
+    color: var(--text-muted);
+    width: 20px;
+    text-align: center;
+    transition: color var(--transition-speed) ease;
+}
+
+.dropdown a:hover {
+    background-color: #fffaf0; /* Light primary background */
+    color: var(--primary-color);
+    padding-left: 26px; /* Smooth slide right effect */
+}
+
+.dropdown a:hover i {
+    color: var(--primary-color);
+}
+
+.dropdown a.logout-link {
+    border-top: 1px solid var(--border-color);
+    margin-top: 5px;
+}
+
+.dropdown a.logout-link:hover {
+    background-color: #fff1f2; /* Light red */
+    color: #e11d48;
+}
+
+.dropdown a.logout-link:hover i {
+    color: #e11d48;
+}
+
+
+/* 9. Media Queries (Responsive Styling for Tablets & Phones) */
+@media (max-width: 992px) {
+    .hero-sec {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 50px 5%;
+        gap: 30px;
+    }
+
+    .hero-img {
+        width: 350px;
+        height: 350px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        padding: 15px 4%;
+    }
+
+    .search-section {
+        display: none; /* Hide search bar elements inside header on mobiles */
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+}
